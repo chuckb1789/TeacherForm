@@ -1,0 +1,54 @@
+<h1>
+  {{title}}
+</h1>
+
+<form (ngSubmit)="processForm()" [formGroup]="teacherForm">
+  <div class="form-group">
+  <h5>Name</h5>
+      <select formControlName="name" name="name">
+        <option value="" disabled selected>Choose your name</option>
+        <option *ngFor="let teacherName of teacherNames" value="{{teacherName}}"> {{ teacherName }} </option>
+      </select>
+  </div>
+
+  <div class="form-group">
+  <h5>Subject</h5>
+    <select formControlName="subject" name="subject">
+      <option value="" disabled selected>Choose your subject</option>
+      <option *ngFor="let subject of subjects" value="{{subject}}"> {{ subject }} </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="name">TeacherID</label>
+    <input type="text" class="form-control" name="teacherID" required formControlName="teacherID">
+  </div>
+
+  <div class="form-group">
+    <div formArrayName="students">
+            <div *ngFor="let student of teacherForm.controls.students.controls; let i=index" class="panel panel-default">
+              <div class="panel-heading">
+                <span>Student {{i + 1}}</span>
+                <span class="glyphicon glyphicon-remove pull-right" *ngIf="teacherForm.controls.students.controls.length > 1" (click)="removeStudent(i)"></span>
+              </div>
+              <div class="panel-body" [formGroupName]="i">
+                <student [group]="teacherForm.controls.students.controls[i]"></student>
+              </div>
+            </div>
+          </div>
+
+          <div class="margin-20">
+            <a (click)="addStudent()" style="cursor: default">
+              Add another student +
+            </a>
+          </div>
+
+    <!-- <label for="username">Students</label>
+    <input type="text" class="form-control" name="students" require formControlName="students"> -->
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-danger">Submit</button>
+  </div>
+
+</form>
