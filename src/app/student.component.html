@@ -1,4 +1,8 @@
 <div [formGroup]="studentForm">
+  <div class="form-group">
+      <label>Teacher ID Number</label>
+      <input type="number" class="form-control" formControlName="teacherID">
+  </div>
     <div class="form-group">
         <label>Student Name</label>
         <input type="text" class="form-control" formControlName="name">
@@ -7,15 +11,7 @@
         </small>
     </div>
     <div class="form-group">
-        <label>Student ID Number</label>
-        <input type="text" class="form-control" formControlName="studentID">
-    </div>
-    <div class="form-group">
-        <label>Best Friend</label>
-        <input type="text" class="form-control" formControlName="bestFriend">
-    </div>
-    <div class="form-group">
-        <label>Favorite Subject</label>
-        <input type="text" class="form-control" formControlName="favoriteSubject">
+        <label>Number of Friends</label>
+        <input type="number" class="form-control" formControlName="numFriends">
     </div>
 </div>

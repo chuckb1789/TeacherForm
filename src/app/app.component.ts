@@ -13,16 +13,12 @@ export class AppComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {}
 
-  teacherNames = ["Mrs. Beaker", "Mr. Paddington", "Mrs. Quiz", "Mr. Tough"];
-
-  subjects = ['Science', 'Math', 'Art', 'History'];
-
   ngOnInit() {
     //build our form here.
     this.teacherForm = this.fb.group({
-      name: [""],
-      subject: [""],
+      teacherName: [""],
       teacherID: [""],
+      school: [""],
       students: this.fb.array([])
 
     });
@@ -35,9 +31,8 @@ export class AppComponent implements OnInit {
   initStudent() {
         return this.fb.group({
             name: ['', Validators.required],
-            studentID: [''],
-            bestFriend: [''],
-            favoriteSubject: ['']
+            teacherID: [''],
+            numFriends: [''],
         });
     }
 

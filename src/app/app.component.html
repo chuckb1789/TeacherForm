@@ -3,26 +3,23 @@
 </h1>
 
 <form (ngSubmit)="processForm()" [formGroup]="teacherForm">
-  <div class="form-group">
-  <h5>Name</h5>
-      <select formControlName="name" name="name">
-        <option value="" disabled selected>Choose your name</option>
-        <option *ngFor="let teacherName of teacherNames" value="{{teacherName}}"> {{ teacherName }} </option>
-      </select>
+
+  <div style="margin-left: 2vw;" class="form-group">
+    <label>Teacher ID Number</label>
+    <input style="width: 40vw" type="number" class="form-control" name="teacherID" required formControlName="teacherID">
   </div>
 
-  <div class="form-group">
-  <h5>Subject</h5>
-    <select formControlName="subject" name="subject">
-      <option value="" disabled selected>Choose your subject</option>
-      <option *ngFor="let subject of subjects" value="{{subject}}"> {{ subject }} </option>
-    </select>
+  <div style="margin-left: 2vw;" class="form-group">
+      <label>Teacher Name</label>
+        <input style="width: 40vw" type="text" class="form-control" name="teacherName" required formControlName="teacherName">
   </div>
 
-  <div class="form-group">
-    <label for="name">TeacherID</label>
-    <input type="text" class="form-control" name="teacherID" required formControlName="teacherID">
+  <div style="margin-left: 2vw;" class="form-group">
+        <label>School</label>
+          <input style="width: 40vw" type="text" class="form-control" name="school" required formControlName="school">
   </div>
+
+
 
   <div class="form-group">
     <div formArrayName="students">
