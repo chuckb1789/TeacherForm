@@ -6,7 +6,7 @@
 
   <div style="margin-left: 2vw;" class="form-group">
     <label>Teacher ID Number</label>
-    <input style="width: 40vw" type="number" class="form-control" name="teacherID" required formControlName="teacherID">
+    <input [(ngModel)]="teacherIdentification" style="width: 40vw" type="number" class="form-control" name="teacherID" required formControlName="teacherID">
   </div>
 
   <div style="margin-left: 2vw;" class="form-group">
@@ -20,7 +20,7 @@
   </div>
 
 
-
+  <p> {{teacher}} </p>
   <div class="form-group">
     <div formArrayName="students">
             <div *ngFor="let student of teacherForm.controls.students.controls; let i=index" class="panel panel-default">
@@ -29,7 +29,7 @@
                 <span class="glyphicon glyphicon-remove pull-right" *ngIf="teacherForm.controls.students.controls.length > 1" (click)="removeStudent(i)"></span>
               </div>
               <div class="panel-body" [formGroupName]="i">
-                <student [group]="teacherForm.controls.students.controls[i]"></student>
+                <student [teacher]="teacherIdentification" (teacherChange)="teacherIdentification=$event" [group]="teacherForm.controls.students.controls[i]"></student>
               </div>
             </div>
           </div>

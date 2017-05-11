@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -12,6 +12,14 @@ export class AppComponent implements OnInit {
   public teacherForm: FormGroup;
 
   constructor(private fb: FormBuilder) {}
+
+  teacher: number;
+
+  teacherIdentification: number;
+
+  onTeacherChange() {
+    this.teacherIdentification = this.teacher;
+  }
 
   ngOnInit() {
     //build our form here.
@@ -31,7 +39,7 @@ export class AppComponent implements OnInit {
   initStudent() {
         return this.fb.group({
             name: ['', Validators.required],
-            teacherID: [''],
+            teacherID: this.teacher,
             numFriends: [''],
         });
     }
@@ -47,9 +55,14 @@ export class AppComponent implements OnInit {
         const control = <FormArray>this.teacherForm.controls['students'];
         control.removeAt(i);
     };
-
+    data = [];
     processForm() {
+      //Show Teacher Form data.
       console.log(this.teacherForm.value);
+      //Save Data to an array of objects.
+      this.data.push( this.teacherForm.value );
+      //Show data in the array of objects.
+      console.log(this.data);
     }
 
 }
