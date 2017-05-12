@@ -2,7 +2,7 @@
   {{title}}
 </h1>
 
-<form (ngSubmit)="processForm()" [formGroup]="teacherForm">
+<form (ngSubmit)="processForm()" [formGroup]="teacherForm" id="entireForm">
 
   <div style="margin-left: 2vw;" class="form-group">
     <label>Teacher ID Number</label>
@@ -19,8 +19,6 @@
           <input style="width: 40vw" type="text" class="form-control" name="school" required formControlName="school">
   </div>
 
-
-  <p> {{teacher}} </p>
   <div class="form-group">
     <div formArrayName="students">
             <div *ngFor="let student of teacherForm.controls.students.controls; let i=index" class="panel panel-default">
@@ -39,13 +37,25 @@
               Add another student +
             </a>
           </div>
-
-    <!-- <label for="username">Students</label>
-    <input type="text" class="form-control" name="students" require formControlName="students"> -->
   </div>
 
   <div class="form-group">
     <button type="submit" class="btn btn-danger">Submit</button>
   </div>
-
 </form>
+<div style="margin-left: 2vw" *ngIf="showTeacherForm" id="teacherFormOutput">
+    <h4>Teacher Name:</h4> <p> {{teacherForm.controls.teacherName._value}} </p>
+    <h4> Teacher ID: </h4> <p> {{teacherForm.controls.teacherID._value}}</p>
+    <h4> School: </h4> <p> {{teacherForm.controls.school._value}}</p>
+    <div>
+      <h4> Students: </h4>
+      <ul *ngFor="let item of studentData">
+        <li> <b>Name:</b> {{ item.name }} </li>
+        <li> <b>Number of Friends:</b> {{ item.numFriends}} </li>
+      </ul>
+    </div>
+    <div class="margin-20">
+      <a href="#entireForm" (click)="addTeacher()">
+        Add another teacher +
+      </a>
+</div>
